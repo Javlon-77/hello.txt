@@ -1,5 +1,6 @@
-<html>
-  <title>Salom</title>
-  <body>
-    <h1>Hello World<h1>
+<!DOCTYPE html>
+<html lang="uz">
+<body>
+    <h1>Hello, World!</h1>
+</body>
 </html>
