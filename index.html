@@ -1,3 +1,367 @@
-Hello World!
+```html
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oy — Moon</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
+      background:
+        radial-gradient(circle at 50% 35%, #202b55 0%, #0b1028 35%, #03050f 75%);
+    }
+
+    /* Yulduzlar */
+    .stars {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from {
+        opacity: 0.2;
+        transform: scale(1);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+    }
+
+    /* Navbar */
+    nav {
+      position: relative;
+      z-index: 5;
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 25px 0;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: #9eb7ff;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      opacity: 0.8;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #9eb7ff;
+      opacity: 1;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      z-index: 2;
+      min-height: calc(100vh - 90px);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .content {
+      max-width: 800px;
+    }
+
+    .content h1 {
+      font-size: clamp(45px, 8vw, 90px);
+      margin-bottom: 20px;
+      text-shadow: 0 0 30px rgba(180, 200, 255, 0.5);
+    }
+
+    .content h1 span {
+      color: #aebfff;
+    }
+
+    .content p {
+      font-size: 19px;
+      line-height: 1.7;
+      color: #cbd2ec;
+      margin-bottom: 35px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      color: #0a0d1c;
+      background: #dce4ff;
+      font-weight: bold;
+      transition: 0.3s;
+      box-shadow: 0 0 25px rgba(170, 190, 255, 0.35);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 40px rgba(170, 190, 255, 0.65);
+    }
+
+    /* Oy */
+    .moon {
+      position: relative;
+      width: 230px;
+      height: 230px;
+      margin: 0 auto 45px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff, #dfe4ee 45%, #9da7bb 100%);
+
+      box-shadow:
+        0 0 30px rgba(255,255,255,0.8),
+        0 0 80px rgba(170,190,255,0.5);
+
+      animation: moonFloat 5s ease-in-out infinite;
+    }
+
+    .moon::before,
+    .moon::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(120, 130, 150, 0.25);
+    }
+
+    .moon::before {
+      width: 45px;
+      height: 45px;
+      top: 40px;
+      left: 55px;
+      box-shadow:
+        80px 20px 0 12px rgba(120,130,150,0.18),
+        45px 100px 0 8px rgba(120,130,150,0.2),
+        -10px 125px 0 6px rgba(120,130,150,0.16);
+    }
+
+    .moon::after {
+      width: 25px;
+      height: 25px;
+      top: 115px;
+      left: 105px;
+      box-shadow:
+        -65px -65px 0 4px rgba(120,130,150,0.18),
+        55px 45px 0 5px rgba(120,130,150,0.15);
+    }
+
+    @keyframes moonFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    /* Info */
+    .info {
+      position: relative;
+      z-index: 3;
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto 70px;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.11);
+    }
+
+    .card h2 {
+      margin-bottom: 12px;
+      color: #b8c7ff;
+    }
+
+    .card p {
+      color: #c7cde0;
+      line-height: 1.6;
+    }
+
+    footer {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 30px;
+      color: #8992ad;
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+
+      .info {
+        grid-template-columns: 1fr;
+      }
+
+      .moon {
+        width: 180px;
+        height: 180px;
+      }
+
+      .content p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <nav>
+    <div class="logo">🌙 <span>MOON</span></div>
+
+    <div>
+      <a href="#home">Bosh sahifa</a>
+      <a href="#info">Ma'lumot</a>
+    </div>
+  </nav>
+
+  <main id="home" class="hero">
+
+    <div class="content">
+
+      <div class="moon"></div>
+
+      <h1>Sirli <span>Oy</span></h1>
+
+      <p>
+        Oy — Yerning tabiiy yo‘ldoshi. U tun osmonini
+        yoritib, insoniyatni ming yillar davomida
+        o‘zining sirli ko‘rinishi bilan hayratga solib keladi.
+      </p>
+
+      <a href="#info" class="btn">
+        Oy haqida bilish →
+      </a>
+
+    </div>
+
+  </main>
+
+  <section id="info" class="info">
+
+    <div class="card">
+      <h2>🌍 Yer yo‘ldoshi</h2>
+      <p>
+        Oy Yer atrofida aylanadigan tabiiy yo‘ldosh bo‘lib,
+        uning tortishish kuchi Yerda suv to‘lqinlariga ta'sir qiladi.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>🌕 Oy fazalari</h2>
+      <p>
+        Oy turli fazalarda ko‘rinadi: yangi oy, hilol,
+        birinchi chorak, to‘lin oy va boshqa bosqichlar.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>🚀 Koinot</h2>
+      <p>
+        Oy insoniyat tomonidan bevosita tadqiq qilingan
+        eng yaqin osmon jismlaridan biridir.
+      </p>
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 Moon Website | Yaratuvchi: Sarvar
+  </footer>
+
+  <script>
+    // Yulduzlarni yaratish
+    const starsContainer = document.getElementById("stars");
+
+    for (let i = 0; i < 180; i++) {
+      const star = document.createElement("div");
+
+      star.className = "star";
+
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+
+      const size = Math.random() * 3 + 1;
+
+      star.style.width = size + "px";
+      star.style.height = size + "px";
+
+      star.style.animationDelay =
+        Math.random() * 3 + "s";
+
+      starsContainer.appendChild(star);
+    }
+  </script>
+
+</body>
+</html>
+```
+
 
 
